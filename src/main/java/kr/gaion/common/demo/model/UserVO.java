@@ -3,7 +3,6 @@ package kr.gaion.common.demo.model;
 
 import lombok.*;
 import javax.persistence.*;
-import java.time.DateTimeException;
 import java.util.Date;
 
 @Data
@@ -32,8 +31,14 @@ public class UserVO {
     private Date updated_at;
 
     @Builder
-    public UserVO(String user_id, String user_pw) {
+    public UserVO(String user_id, String user_pw, String user_name, String user_address, String user_phone, String user_email, Date created_at, Date updated_at) {
         this.user_id = user_id;
         this.user_pw = user_pw;
+        this.user_name = user_name;
+        this.user_address = getUser_address();
+        this.user_phone = user_phone;
+        this.user_email = user_email;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 }

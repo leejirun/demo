@@ -1,7 +1,7 @@
 package kr.gaion.common.demo.service;
 
 import kr.gaion.common.demo.model.UserVO;
-import kr.gaion.common.demo.repository.ApiRepository;
+import kr.gaion.common.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class ApiService {
 
     @Autowired
-    private ApiRepository repository;
+    private UserRepository repository;
 
     public List<UserVO> getAllUser() {
         System.out.println("service");
