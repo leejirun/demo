@@ -1,13 +1,12 @@
 package kr.gaion.common.demo.model;
 
-
 import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity(name = "user")
 public class UserVO {
     @Id
@@ -40,5 +39,17 @@ public class UserVO {
         this.user_email = user_email;
         this.created_at = created_at;
         this.updated_at = updated_at;
+    }
+
+    @Builder
+    public UserVO(UserForm form) {
+        this.user_id = form.getUser_id();
+        this.user_pw = form.getUser_pw();
+        this.user_name = form.getUser_name();
+        this.user_address = form.getUser_address();
+        this.user_phone = form.getUser_phone();
+        this.user_email = form.getUser_email();
+        this.created_at = new Date();
+        this.updated_at = new Date();
     }
 }
