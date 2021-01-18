@@ -3,13 +3,11 @@ package kr.gaion.common.demo.service;
 import kr.gaion.common.demo.model.UserForm;
 import kr.gaion.common.demo.model.UserVO;
 import kr.gaion.common.demo.repository.UserRepository;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +42,8 @@ public class UserService {
             UserVO user = userRepository.signIn(paramMap.get("id").toString(),
                     paramMap.get("pw").toString());
 
-            resultMap.put("user", user);
+            resultMap.put("user", paramMap.get(user));
+            System.out.println(resultMap.put("user",user));
             resultMap.put("message", "로그인 성공");
         }catch (Exception e) {
             resultMap.put("message", "로그인 실패");
@@ -60,11 +59,19 @@ public class UserService {
     }
 
 
-  //  public Optional<UserVO> findById(int idx) {
-   //     Optional<UserVO> userlist = userRepository.findById((long) idx);
-   //     System.out.println(userRepository.findById((long) idx));
-  //      return userlist;
-  //  }
+//    public List<UserVO> getUser(UserForm form) {
+//        List<UserVO> userList = new ArrayList<>();
+//        userRepository.findOne(form.getUser_idx()).forEach(e -> userList.add(e));
+//        System.out.println(userRepository.getOne((long) form.getUser_idx()));
+//        try{
+//            userRepository.findById((long) idx);
+//            System.out.println(userRepository);
+//        }catch (Exception e){
+//            System.out.println(e);
+//            resultMap.put("message","회원 조회 실패");
+//        }
+//        return userList;
+//    }
 
     public HashMap<String, Object> userupdate(UserForm form) {
         HashMap<String, Object> resultMap = new HashMap<>();

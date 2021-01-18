@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Controller
@@ -44,12 +44,12 @@ public class UserController {
         return new ResponseEntity<List<UserVO>>(userList, HttpStatus.OK);
     }
 
-    //해당 회원 조회
-  //  @GetMapping(path = "user/{idx}")
-  //  public ResponseEntity<UserVO> userfind(@PathVariable int idx){
-   //     Optional<UserVO> userlist = userService.findById(idx);
-   //     return new ResponseEntity<UserVO>(userlist.get(), HttpStatus.OK);
-  //  }
+//    해당 회원 조회
+//    @GetMapping(path = "user/{idx}")
+//    public ResponseEntity<List<UserVO>> userfind(@RequestBody UserForm form){
+//        List<UserVO> userList = (List<UserVO>) userService.getUser(form);
+//        return new ResponseEntity<List<UserVO>>(userList, HttpStatus.OK);
+//    }
 
 
     //회원 정보 수정
