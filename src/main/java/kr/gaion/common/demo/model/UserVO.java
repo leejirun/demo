@@ -28,17 +28,23 @@ public class UserVO {
     private Date created_at;
     @Column
     private Date updated_at;
+    @Column
+    private int user_age;
+    @Column
+    private char user_gender;
 
     @Builder
-    public UserVO(String user_id, String user_pw, String user_name, String user_address, String user_phone, String user_email, Date created_at, Date updated_at) {
+    public UserVO(String user_id, String user_pw, String user_name, String user_address, String user_phone, String user_email, Date created_at, Date updated_at, int user_age, char user_gender) {
         this.user_id = user_id;
         this.user_pw = user_pw;
         this.user_name = user_name;
-        this.user_address = getUser_address();
+        this.user_address = user_address;
         this.user_phone = user_phone;
         this.user_email = user_email;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.user_age = user_age;
+        this.user_gender = user_gender;
     }
 
     @Builder
@@ -49,7 +55,7 @@ public class UserVO {
         this.user_address = form.getUser_address();
         this.user_phone = form.getUser_phone();
         this.user_email = form.getUser_email();
-        this.created_at = new Date();
-        this.updated_at = new Date();
+        this.user_age = form.getUser_age();
+        this.user_gender = form.getUser_gender();
     }
 }

@@ -26,4 +26,9 @@ public class UserForm {
     private String user_phone;
     @Column
     private String user_email;
+    @Column
+    private int user_age;
+    @Column
+    private char user_gender;
+
 }

@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserVO, Long> {
-    
+
+
+
     //로그인 쿼리
     @Query(
             value = "select *" +

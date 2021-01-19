@@ -26,6 +26,7 @@ public class UserController {
     @PostMapping(path = "/user/signup")
     public ResponseEntity<HashMap<String, Object>> signup(@RequestBody UserForm form) {
         HashMap<String, Object> resultMap = userService.signUp(form);
+        System.out.println(resultMap);
         return new ResponseEntity<HashMap<String, Object>>(resultMap, HttpStatus.OK);
     }
 
