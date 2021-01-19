@@ -1,7 +1,6 @@
 package kr.gaion.common.demo.repository;
 
 import kr.gaion.common.demo.model.UserVO;
-import org.apache.catalina.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserVO, Long> {
-
-
 
     //로그인 쿼리
     @Query(

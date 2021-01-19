@@ -1,5 +1,5 @@
 package kr.gaion.common.demo.model;
-
+//테이블에 필요한 컬럼, 우리가 입력받을 때 user_idx같은 입력받지 않은 것들을 빼고 필요한 것만 입력받으려는 vo 객체
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

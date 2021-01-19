@@ -1,33 +1,22 @@
+// npm start , npm run-script build
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./utils/App";
-import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
-import promiseMiddlerware from "redux-promise";
-import reduxThunk from "redux-thunk";
-import reducer from "./_reducers";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import SignIn from "layouts/SignIn.js";
+import SignUp from "layouts/SignUp.js";
+import Home from "layouts/Home.js";
+import { createBrowserHistory } from "history";
 
-const createStoreWidthMiddleware = applyMiddleware(
-    promiseMiddlerware,
-    reduxThunk
-)(createStore);
+const hist = createBrowserHistory();
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Provider
-            store={createStoreWidthMiddleware(
-                reducer,
-                //개발자 도구를 사용하기 위한 설정
-                window.__REDUX_DEVTOOLS_EXTENSION__ &&
-                window.__REDUX_DEVTOOLS_EXTENSION__()
-            )}>
-            <App />
-        </Provider>
-    </React.StrictMode>,
-    document.getElementById("root")
+  <Router history={hist}>
+    <Switch>
+      <Route path="/signin" component={SignIn}/>
+      <Route path="/signup" component={SignUp}/>
+      <Route path="/home" component={Home}/>
+      <Redirect from="/" to="/signin" />
+    </Switch>
+  </Router>,
+  document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-
-// serviceWorker.unregister();

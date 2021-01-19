@@ -1,5 +1,5 @@
 package kr.gaion.common.demo.model;
-
+//디바랑 연결되는 아이
 import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
@@ -41,8 +41,8 @@ public class UserVO {
         this.user_address = user_address;
         this.user_phone = user_phone;
         this.user_email = user_email;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.created_at = new Date();
+        this.updated_at = new Date();
         this.user_age = user_age;
         this.user_gender = user_gender;
     }

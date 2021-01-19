@@ -39,12 +39,14 @@ public class UserService {
     public HashMap<String, Object> signIn(HashMap<String, Object> paramMap) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try{
-            UserVO user = userRepository.signIn(paramMap.get("id").toString(),
-                    paramMap.get("pw").toString());
-
-            resultMap.put("user", paramMap.get(user));
-            System.out.println(resultMap.put("user",user));
-            resultMap.put("message", "로그인 성공");
+            UserVO user = userRepository.signIn(paramMap.get("user_id").toString(),
+                                  paramMap.get("user_pw").toString());
+            if(user != null) {
+                resultMap.put("user", user);
+                resultMap.put("message", "로그인 성공");
+            }else{
+                resultMap.put("message", "해당 id 혹은 비밀번호가 틀렸습니다.");
+            }
         }catch (Exception e) {
             resultMap.put("message", "로그인 실패");
         }
@@ -58,20 +60,6 @@ public class UserService {
         return userList;
     }
 
-
-//    public List<UserVO> getUser(UserForm form) {
-//        List<UserVO> userList = new ArrayList<>();
-//        userRepository.findOne(form.getUser_idx()).forEach(e -> userList.add(e));
-//        System.out.println(userRepository.getOne((long) form.getUser_idx()));
-//        try{
-//            userRepository.findById((long) idx);
-//            System.out.println(userRepository);
-//        }catch (Exception e){
-//            System.out.println(e);
-//            resultMap.put("message","회원 조회 실패");
-//        }
-//        return userList;
-//    }
 
     public HashMap<String, Object> userupdate(UserForm form) {
         HashMap<String, Object> resultMap = new HashMap<>();

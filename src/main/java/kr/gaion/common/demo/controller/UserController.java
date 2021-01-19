@@ -45,14 +45,6 @@ public class UserController {
         return new ResponseEntity<List<UserVO>>(userList, HttpStatus.OK);
     }
 
-//    해당 회원 조회
-//    @GetMapping(path = "user/{idx}")
-//    public ResponseEntity<List<UserVO>> userfind(@RequestBody UserForm form){
-//        List<UserVO> userList = (List<UserVO>) userService.getUser(form);
-//        return new ResponseEntity<List<UserVO>>(userList, HttpStatus.OK);
-//    }
-
-
     //회원 정보 수정
     @PutMapping(path = "/user/update/{idx}")
     public ResponseEntity<HashMap<String, Object>> userupdate(@RequestBody UserForm form){
