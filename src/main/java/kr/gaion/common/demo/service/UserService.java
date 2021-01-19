@@ -41,6 +41,7 @@ public class UserService {
         try{
             UserVO user = userRepository.signIn(paramMap.get("user_id").toString(),
                                   paramMap.get("user_pw").toString());
+            //추가
             if(user != null) {
                 resultMap.put("user", user);
                 resultMap.put("message", "로그인 성공");
