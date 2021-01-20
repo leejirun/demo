@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -30,5 +31,11 @@ public class UserForm {
     private int user_age;
     @Column
     private char user_gender;
+    @Column
+    private int user_grade;
+    @Column
+    private Date created_at;
+    @Column
+    private Date updated_at;
 
 }

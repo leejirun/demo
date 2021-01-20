@@ -1,5 +1,5 @@
 package kr.gaion.common.demo.model;
-//디바랑 연결되는 아이
+//디비랑 연결되는 아이
 import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
@@ -32,9 +32,13 @@ public class UserVO {
     private int user_age;
     @Column
     private char user_gender;
+    @Column
+    private int user_grade;
 
     @Builder
-    public UserVO(String user_id, String user_pw, String user_name, String user_address, String user_phone, String user_email, Date created_at, Date updated_at, int user_age, char user_gender) {
+    public UserVO(String user_id, String user_pw, String user_name, String user_address,
+                  String user_phone, String user_email, Date created_at, Date updated_at,
+                  int user_age, char user_gender, int user_grade) {
         this.user_id = user_id;
         this.user_pw = user_pw;
         this.user_name = user_name;
@@ -45,6 +49,7 @@ public class UserVO {
         this.updated_at = new Date();
         this.user_age = user_age;
         this.user_gender = user_gender;
+        this.user_grade = user_grade;
     }
 
     @Builder
@@ -57,5 +62,8 @@ public class UserVO {
         this.user_email = form.getUser_email();
         this.user_age = form.getUser_age();
         this.user_gender = form.getUser_gender();
+        this.user_grade = form.getUser_grade();
+        this.created_at = new Date();
+        this.updated_at = new Date();
     }
 }
