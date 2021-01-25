@@ -8,7 +8,7 @@ import Home from "layouts/Home.js";
 import { createBrowserHistory } from "history";
 
 const hist = createBrowserHistory();
-
+  
 ReactDOM.render(
   <Router history={hist}>
     <Switch>

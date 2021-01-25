@@ -3,9 +3,13 @@ package kr.gaion.common.demo.service;
 import kr.gaion.common.demo.model.UserForm;
 import kr.gaion.common.demo.model.UserVO;
 import kr.gaion.common.demo.repository.UserRepository;
+
+import kr.gaion.common.demo.util.JwtTokenProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,28 +25,42 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
+
     public HashMap<String, Object> signUp(UserForm form) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try{
             UserVO newuser = new UserVO(form);
+            newuser.setUser_pw(passwordEncoder.encode(newuser.getUser_pw()));
             UserVO result = userRepository.save(newuser);
 
             if(result ==null) throw new Exception();
-
             resultMap.put("message", "회원가입 성공");
+
         }catch(Exception e) {
             resultMap.put("message", "회원가입 실패");
+            System.out.println(resultMap);
         }
         return resultMap;
     }
 
+
     public HashMap<String, Object> signIn(HashMap<String, Object> paramMap) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try{
-            UserVO user = userRepository.signIn(paramMap.get("user_id").toString(),
-                                  paramMap.get("user_pw").toString());
+            UserVO user = userRepository.signIn(paramMap.get("user_id").toString());
+
             //추가
-            if(user != null) {
+            if(user != null && passwordEncoder.matches(paramMap.get("user_pw").toString(),
+                user.getUser_pw())){
+
+                String token = jwtTokenProvider.createToken(Integer.toString(user.getUser_idx()));
+                resultMap.put("accessToken", token);
                 resultMap.put("user", user);
                 resultMap.put("message", "로그인 성공");
             }else{
@@ -50,6 +68,8 @@ public class UserService {
             }
         }catch (Exception e) {
             resultMap.put("message", "로그인 실패");
+            System.out.println(e);
+            System.out.println("message");
         }
         return resultMap;
     }
@@ -81,6 +101,21 @@ public class UserService {
             resultMap.put("message", "회원 탈퇴 성공");
         }catch (Exception e){
             resultMap.put("message", "회원 탈퇴 실패");
+        }
+        return resultMap;
+    }
+
+    public HashMap<String, Object> userprofile(int user_idx) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try{
+            if(user_idx != 0) {
+                UserVO user = userRepository.userprofile(user_idx);
+                resultMap.put("user", user);
+                resultMap.put("message", "user_idx");
+                resultMap.put("message", "성공");
+            }
+        }catch (Exception e){
+            resultMap.put("message","실패");
         }
         return resultMap;
     }
