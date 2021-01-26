@@ -5,6 +5,7 @@ import kr.gaion.common.demo.model.UserVO;
 import kr.gaion.common.demo.repository.UserRepository;
 
 import kr.gaion.common.demo.util.JwtTokenProvider;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,6 @@ public class UserService {
         return resultMap;
     }
 
-
     public HashMap<String, Object> signIn(HashMap<String, Object> paramMap) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try{
@@ -82,18 +82,6 @@ public class UserService {
     }
 
 
-    public HashMap<String, Object> userupdate(UserForm form) {
-        HashMap<String, Object> resultMap = new HashMap<>();
-        try{
-            userRepository.update(form.getUser_idx(),form.getUser_pw());
-            resultMap.put("message","회원 수정 성공");
-        }catch (Exception e){
-            System.out.println(e);
-            resultMap.put("message","회원 수정 실패");
-        }
-        return resultMap;
-    }
-
     public HashMap<String, Object> userdelete(int idx) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try{
@@ -116,6 +104,27 @@ public class UserService {
             }
         }catch (Exception e){
             resultMap.put("message","실패");
+        }
+        return resultMap;
+    }
+
+    public HashMap<String, Object> userupdate(int user_idx, UserForm form) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+
+        try{
+            String user_pw = passwordEncoder.encode(form.getUser_pw());
+            String user_address = form.getUser_address();
+            String user_phone = form.getUser_phone();
+            String user_email = form.getUser_email();
+
+            int result = userRepository.userupdate(user_idx, user_pw, user_address, user_phone, user_email);
+            //resultMap은 HttpResponse를 위한 데이터형으로 활용하는 용도, put해서 넣어준 값만 있을 뿐!
+            resultMap.put("result", result);
+            resultMap.put("message","회원 수정 성공");
+
+        }catch (Exception e){
+            resultMap.put("message","회원 수정 실패");
+            System.out.println(e);
         }
         return resultMap;
     }

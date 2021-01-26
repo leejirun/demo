@@ -30,7 +30,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
 
         System.out.println(">>> interceptor.preHandle 호출");
         String token = authExtractor.extract(request, "Bearer");
-        //System.out.println("token"+token);
+//        System.out.println("token"+token);
 
         if (StringUtils.isEmpty(token)) {
             return true;
