@@ -1,6 +1,8 @@
 # Gaion Web_project
 
 ## 혼자 개발 하며 공부한 것을 기록해두었습니다.
+>CRUD를 활용한 웹 서비스 개발을 하는 데 주목적으로 하고 있습니다.
+> 
 - user  : 회원가입과 로그인, 프로필 조회/수정/탈퇴
 - admin : 회원 관리 페이지
 - board : 게시판 작성/조회/수정/삭제
@@ -9,8 +11,11 @@
 - java, javascript, css, html 사용
 
 ## Framework
-- java boot, react
+- spring boot, react
 
 ## OS 환경
 - window
+
+## DB
+- Maria DB
 
