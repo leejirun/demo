@@ -18,7 +18,7 @@ public class AuthorizationExtractor {
         Enumeration<String> headers = request.getHeaders(AUTHORIZATION);
         while (headers.hasMoreElements()) {
             String value = headers.nextElement();
-//            System.out.println("나오나"+value);
+            System.out.println("1번 나오나"+value);
             if (value.toLowerCase().startsWith(type.toLowerCase())) {
                 return value.substring(type.length()).trim();
             }

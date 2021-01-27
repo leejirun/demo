@@ -30,7 +30,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
 
         System.out.println(">>> interceptor.preHandle 호출");
         String token = authExtractor.extract(request, "Bearer");
-//        System.out.println("token"+token);
+        System.out.println("1번 token"+token);
 
         if (StringUtils.isEmpty(token)) {
             return true;
@@ -40,10 +40,12 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
             throw new IllegalArgumentException("유효하지 않은 토큰");
         }
 
-        String user_idx = jwtTokenProvider.getSubject(token);
-        //System.out.println("sss"+user_idx);
-        request.setAttribute("user_idx", user_idx);
 
+        String user_idx = jwtTokenProvider.getSubject(token);
+        System.out.println("user_id"+user_idx);
+
+        request.setAttribute("user_idx", user_idx);
+//        System.out.println("여기서 멈춰: user_idx", user_idx);
         return true;
     }
 }
