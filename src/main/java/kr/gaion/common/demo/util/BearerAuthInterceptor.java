@@ -42,10 +42,9 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
 
 
         String user_idx = jwtTokenProvider.getSubject(token);
-        System.out.println("user_id"+user_idx);
-
+        System.out.println("user_id "+user_idx);
         request.setAttribute("user_idx", user_idx);
-//        System.out.println("여기서 멈춰: user_idx", user_idx);
+
         return true;
     }
 }

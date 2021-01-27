@@ -70,8 +70,8 @@ export default function UserProfile({location, history}) {
     useEffect(() => {
         Axios.get('/user/profile')
         .then(function( response){
-            // console.log(response);
-            // console.log(axios.defaults.headers.common['Authorization']);
+            console.log(response);
+            console.log(axios.defaults.headers.common['Authorization']);
             if(response.data.message === "프로필 정보 조회 성공") {
                 setId(response.data.user.user_id);
                 setPw(response.data.user.user_pw);
@@ -102,8 +102,8 @@ export default function UserProfile({location, history}) {
             "user_grade" : {grade}.grade,
             "user_gender" : {gender}.gender
         }).then( respose => {
-            // console.log(respose);
-            // console.log(axios.defaults.headers.common['Authorization']);
+            console.log(respose);
+            console.log(axios.defaults.headers.common['Authorization']);
             if(respose.data > 0){
                 alert("프로필 수정 성공");
                 window.location.reload();
@@ -114,25 +114,29 @@ export default function UserProfile({location, history}) {
             })
     }
 
-    // const handleOnClick2 = e => {
-    //     e.preventDefault();
-    //     if(window.confirm("정말 탈퇴하시겠습니까?")) {
-    //         axios.delete('/user/'+idx)
-    //             .then( respose => {
-    //                 if(respose.data > 0){
-    //                     alert("탈퇴 성공");
-    //                     window.location.reload();
-    //                 }
-    //             }).catch( error => {
-    //             console.log(error);
-    //             alert("탈퇴 실패");
-    //         })
-    //     }
-    //     else {
-    //         console.log("false");
-    //     }
-    //
-    // }
+     const handleOnClick2 = e => {
+         e.preventDefault();
+         if(window.confirm("정말 탈퇴하시겠습니까?")) {
+             axios.delete('/user/delete')
+                 .then( respose => {
+                     console.log(respose);
+                     console.log(axios.defaults.headers.common['Authorization']);
+                     if(respose.data > 0){
+                        alert("탈퇴 성공");
+                         window.location.reload();
+                     }
+                     history.push('/signup');
+                 }).catch( error => {
+                console.log(error);
+                 alert("탈퇴 실패");
+             })
+         }
+         else {
+             console.log("false");
+       }
+
+     }
+
     return (
         <div>
             <GridContainer>
@@ -280,7 +284,7 @@ export default function UserProfile({location, history}) {
                             <Box style={{width:"100%"}} display="flex" flexDirection="row" p={1} m={1}>
                                 <Box p={1}>
                                      <Button style={{backgroundColor:"#9c27b0", color:"white"}} color="primary" onClick={handleOnClick}>프로필 수정</Button>
-                                    {/*<Button style={{backgroundColor:"#9c27b0", color:"white", marginLeft:"2rem"}} color="primary" onClick={handleOnClick2}>회원 탈퇴</Button> *!/*/}
+                                     <Button style={{backgroundColor:"#9c27b0", color:"white", marginLeft:"2rem"}} color="primary" onClick={handleOnClick2}>회원 탈퇴</Button>
                                 </Box>
                             </Box>
                         </CardFooter>

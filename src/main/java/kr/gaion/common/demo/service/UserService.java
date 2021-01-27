@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,18 +82,6 @@ public class UserService {
         return userList;
     }
 
-
-    public HashMap<String, Object> userdelete(int idx) {
-        HashMap<String, Object> resultMap = new HashMap<>();
-        try{
-            int result = userRepository.delete(idx);
-            resultMap.put("message", "회원 탈퇴 성공");
-        }catch (Exception e){
-            resultMap.put("message", "회원 탈퇴 실패");
-        }
-        return resultMap;
-    }
-
     public HashMap<String, Object> userprofile(int user_idx) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try{
@@ -129,4 +118,15 @@ public class UserService {
         return resultMap;
     }
 
+    public HashMap<String, Object> userdelete(int user_idx) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try{
+            int result = userRepository.delete(user_idx);
+            resultMap.put("result",result);
+            resultMap.put("message", "회원 탈퇴 성공");
+        }catch (Exception e){
+            resultMap.put("message", "회원 탈퇴 실패");
+        }
+        return resultMap;
+    }
 }

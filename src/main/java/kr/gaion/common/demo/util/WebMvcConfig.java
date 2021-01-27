@@ -22,5 +22,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         System.out.println(">>> 인터셉터 등록");
         registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/user/profile");
         registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/user/update");
+        registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/user/delete");
     }
 }

@@ -23,14 +23,6 @@ public interface UserRepository extends JpaRepository<UserVO, Long> {
             nativeQuery = true)
     UserVO signIn(String id);
     
-    //휘원 삭제
-    @Transactional
-    @Modifying
-    @Query(
-        value = "delete from user where user_idx = :idx",
-            nativeQuery = true)
-    int delete(int idx);
-    
     //회원 프로필
     @Query(
             value = "select * from user where user_idx = :user_idx",
@@ -48,5 +40,14 @@ public interface UserRepository extends JpaRepository<UserVO, Long> {
             nativeQuery = true
     )
     int userupdate(int user_idx, String user_pw, String user_address, String user_phone, String user_email);
+
+
+    //휘원 삭제
+    @Transactional
+    @Modifying
+    @Query(
+            value = "delete from user where user_idx = :user_idx",
+            nativeQuery = true)
+    int delete(int user_idx);
 }
 
