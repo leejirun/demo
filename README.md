@@ -18,13 +18,13 @@
 
 ## Language & Web Framework
 - Language : java, javascript, css, html 사용
-- Web Framework : Spring Boot, React
+- Web Framework : Spring Boot(jdk:1.8.0_201), React(version:6.14.10)
 
 ## OS 환경
 - Windows 10
 
 ## DB
-- Maria DB
+- Maria DB(version:10.4.17)
 
 
 ## 기능
